@@ -1,17 +1,20 @@
 import time
 import requests
+
 API_URL = "https://zefame-free.com/api_free.php?action=order"
 VIDEO_ID = "7543647106356022535"
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                   "AppleWebKit/537.36 (KHTML, like Gecko) "
                   "Chrome/116.0.0.0 Safari/537.36"
 }
-PROXY = "http://magcrfyp:zpny18760zw4@23.95.150.145:6114"
+
+# Only HTTPS via your proxy
 PROXIES = {
-    "http": PROXY,
-    "https": PROXY
+    "https": "http://magcrfyp:zpny18760zw4@23.95.150.145:6114/"
 }
+
 def send_request(video_id):
     payload = {
         "action": "order",
@@ -28,12 +31,14 @@ def send_request(video_id):
     except Exception as e:
         print(f"Error sending request: {e}")
         return 0
+
 def main():
     total_views = 0
     while True:
         added_views = send_request(VIDEO_ID)
         total_views += added_views
         print(f"Total views added: {total_views}")
-        time.sleep(1)  
+        time.sleep(1)
+
 if __name__ == "__main__":
     main()
