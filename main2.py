@@ -10,8 +10,11 @@ HEADERS = {
                   "Chrome/116.0.0.0 Safari/537.36"
 }
 
+# Your proxy credentials
+PROXY = "http://magcrfyp:zpny18760zw4@23.95.150.145:6114"
+
 async def send_request(video_id):
-    async with httpx.AsyncClient(headers=HEADERS) as client:
+    async with httpx.AsyncClient(proxies=PROXY, headers=HEADERS) as client:
         payload = {
             "action": "order",
             "service": "229",
@@ -34,6 +37,6 @@ async def main():
         added_views = await send_request(VIDEO_ID)
         total_views += added_views
         print(f"Total views added: {total_views}")
-        await asyncio.sleep(1)
+        await asyncio.sleep(60)
 
 asyncio.run(main())
