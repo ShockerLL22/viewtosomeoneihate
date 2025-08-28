@@ -4,8 +4,14 @@ import httpx
 API_URL = "https://zefame-free.com/api_free.php?action=order"
 VIDEO_ID = "7543647106356022535"
 
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/116.0.0.0 Safari/537.36"
+}
+
 async def send_request(video_id):
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(headers=HEADERS) as client:
         payload = {
             "action": "order",
             "service": "229",
@@ -28,6 +34,6 @@ async def main():
         added_views = await send_request(VIDEO_ID)
         total_views += added_views
         print(f"Total views added: {total_views}")
-        await asyncio.sleep(1)  
+        await asyncio.sleep(1)
 
 asyncio.run(main())
